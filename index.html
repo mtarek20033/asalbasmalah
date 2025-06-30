@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الإدارة المتكامل - عسل بسملة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        .tab-btn.active-tab { color: #2563eb; border-bottom-color: #2563eb; background-color: #eff6ff; }
+        .page-content { display: none; }
+        .page-content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card { background-color: white; padding: 1rem 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+        .modal-backdrop { background-color: rgba(0,0,0,0.6); z-index: 40; }
+        .modal-content { z-index: 50; max-height: 90vh; }
+        label { margin-bottom: 0.25rem; font-size: 0.875rem; font-weight: 600; color: #4b5563; }
+        .details-row { transition: all 0.3s ease-in-out; }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .print-area { display: block !important; position: absolute; left: 0; top: 0; width: 100%; }
+            .invoice-copy { page-break-inside: avoid; border: 1px solid #ccc; padding: 1rem; margin-bottom: 2rem; }
+            .print-bg-gray-200 { background-color: #e5e7eb !important; }
+            .print-text-red-600 { color: #dc2626 !important; }
+            .print-text-green-600 { color: #16a34a !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-2 sm:p-4 md:p-8 no-print">
+        <header class="text-center mb-6 md:mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">نظام إدارة المحل</h1>
+            <div id="status-indicator" class="mt-2 text-sm font-semibold text-gray-500">جاري الاتصال...</div>
+        </header>
+
+        <div id="main-nav" class="bg-white rounded-lg shadow-sm mb-6 md:mb-8 flex flex-wrap justify-center border-b">
+            <!-- Tabs will be dynamically inserted here -->
+        </div>
+
+        <main id="main-content">
+            <!-- Pages will be dynamically inserted here -->
+        </main>
+    </div>
+
+    <!-- Modals container -->
+    <div id="modals-container">
+        <!-- Modals will be dynamically inserted here -->
+    </div>
+    
+    <!-- Print Area -->
+    <div class="print-area hidden">
+        <div id="invoice-details-customer" class="invoice-copy"></div>
+        <div id="invoice-details-store" class="invoice-copy"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
